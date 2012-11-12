@@ -16,6 +16,10 @@
 		BE9DD05B165183EC0061F1AF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BE9DD05A165183EC0061F1AF /* Default.png */; };
 		BE9DD05D165183EC0061F1AF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BE9DD05C165183EC0061F1AF /* Default@2x.png */; };
 		BE9DD05F165183EC0061F1AF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BE9DD05E165183EC0061F1AF /* Default-568h@2x.png */; };
+		BE9DD0681651842D0061F1AF /* TableHeaderScrollPad.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9DD0671651842D0061F1AF /* TableHeaderScrollPad.m */; };
+		BE9DD06A1651845F0061F1AF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9DD0691651845F0061F1AF /* QuartzCore.framework */; };
+		BE9DD06E1651A4E90061F1AF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9DD06C1651A4E90061F1AF /* ViewController.m */; };
+		BE9DD06F1651A4E90061F1AF /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE9DD06D1651A4E90061F1AF /* ViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,12 @@
 		BE9DD05A165183EC0061F1AF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		BE9DD05C165183EC0061F1AF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		BE9DD05E165183EC0061F1AF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		BE9DD0661651842D0061F1AF /* TableHeaderScrollPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableHeaderScrollPad.h; path = TableHeaderScrollPad/TableHeaderScrollPad.h; sourceTree = "<group>"; };
+		BE9DD0671651842D0061F1AF /* TableHeaderScrollPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableHeaderScrollPad.m; path = TableHeaderScrollPad/TableHeaderScrollPad.m; sourceTree = "<group>"; };
+		BE9DD0691651845F0061F1AF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		BE9DD06B1651A4E90061F1AF /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		BE9DD06C1651A4E90061F1AF /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		BE9DD06D1651A4E90061F1AF /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE9DD06A1651845F0061F1AF /* QuartzCore.framework in Frameworks */,
 				BE9DD049165183EC0061F1AF /* UIKit.framework in Frameworks */,
 				BE9DD04B165183EC0061F1AF /* Foundation.framework in Frameworks */,
 				BE9DD04D165183EC0061F1AF /* CoreGraphics.framework in Frameworks */,
@@ -51,6 +62,7 @@
 		BE9DD039165183EB0061F1AF = {
 			isa = PBXGroup;
 			children = (
+				BE9DD0691651845F0061F1AF /* QuartzCore.framework */,
 				BE9DD04E165183EC0061F1AF /* TableHeaderScrollPadSample */,
 				BE9DD047165183EC0061F1AF /* Frameworks */,
 				BE9DD045165183EC0061F1AF /* Products */,
@@ -78,9 +90,13 @@
 		BE9DD04E165183EC0061F1AF /* TableHeaderScrollPadSample */ = {
 			isa = PBXGroup;
 			children = (
+				BE9DD065165183F50061F1AF /* TableHeaderScrollPad */,
 				BE9DD057165183EC0061F1AF /* AppDelegate.h */,
 				BE9DD058165183EC0061F1AF /* AppDelegate.m */,
 				BE9DD04F165183EC0061F1AF /* Supporting Files */,
+				BE9DD06B1651A4E90061F1AF /* ViewController.h */,
+				BE9DD06C1651A4E90061F1AF /* ViewController.m */,
+				BE9DD06D1651A4E90061F1AF /* ViewController.xib */,
 			);
 			path = TableHeaderScrollPadSample;
 			sourceTree = "<group>";
@@ -97,6 +113,15 @@
 				BE9DD05E165183EC0061F1AF /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BE9DD065165183F50061F1AF /* TableHeaderScrollPad */ = {
+			isa = PBXGroup;
+			children = (
+				BE9DD0661651842D0061F1AF /* TableHeaderScrollPad.h */,
+				BE9DD0671651842D0061F1AF /* TableHeaderScrollPad.m */,
+			);
+			name = TableHeaderScrollPad;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,6 +179,7 @@
 				BE9DD05B165183EC0061F1AF /* Default.png in Resources */,
 				BE9DD05D165183EC0061F1AF /* Default@2x.png in Resources */,
 				BE9DD05F165183EC0061F1AF /* Default-568h@2x.png in Resources */,
+				BE9DD06F1651A4E90061F1AF /* ViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +192,8 @@
 			files = (
 				BE9DD055165183EC0061F1AF /* main.m in Sources */,
 				BE9DD059165183EC0061F1AF /* AppDelegate.m in Sources */,
+				BE9DD0681651842D0061F1AF /* TableHeaderScrollPad.m in Sources */,
+				BE9DD06E1651A4E90061F1AF /* ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
