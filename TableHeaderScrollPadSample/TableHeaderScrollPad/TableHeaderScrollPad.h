@@ -34,6 +34,7 @@ typedef enum {
 - (NSString *) tableHeaderScrollPad:(TableHeaderScrollPad *)scrollPad titleForHeaderInSection:(NSInteger)section;
 - (NSString *) tableHeaderScrollPad:(TableHeaderScrollPad *)scrollPad descriptionForHeaderInSection:(NSInteger)section;
 - (BOOL) shouldDisplayInfoOverlayForTableHeaderScrollPad:(TableHeaderScrollPad *)scrollPad;
+- (void) didSelectTabOnScrollPad:(TableHeaderScrollPad *)scrollPad atSection:(NSInteger)section;
 
 @required
 - (NSInteger) numberOfSectionsInTableHeaderScrollPad:(TableHeaderScrollPad *)scrollPad;

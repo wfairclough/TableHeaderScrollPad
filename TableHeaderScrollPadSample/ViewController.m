@@ -61,6 +61,11 @@
     return 45;
 }
 
+- (void) didSelectTabOnScrollPad:(TableHeaderScrollPad *)scrollPad atSection:(NSInteger)section
+{
+    NSLog(@"Did select tab at index %d", section);
+}
+
 
 
 

@@ -81,7 +81,6 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"Touch Began");
     
     touchBegan = YES;
 
@@ -95,14 +94,10 @@
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self updateTabsScaleWithTouch:[touches anyObject]];
-    
-    //NSLog(@"Touch Moved x: %f   y: %f", [touch locationInView:self].x, [touch locationInView:self].y);
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"Touch Ended");
-
     touchBegan = NO;
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
@@ -113,11 +108,17 @@
             }];
         }
     });
+    
+    
+    if (self.delegate != nil)
+    {
+        [self.delegate didSelectTabOnScrollPad:self atSection:selectedSectionIndex];
+    }
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"Touch Canceled");
+    
 }
 
 - (void) updateTabsScaleWithTouch:(UITouch *)touch
@@ -159,14 +160,20 @@
         if ((posY > minRange) && (posY < maxRange))
         {
             selectedSectionIndex = i;
-            detailOverlay.sectionLabel.text = [self.delegate tableHeaderScrollPad:self titleForHeaderInSection:i];
-            detailOverlay.descriptionLabel.text = [self.delegate tableHeaderScrollPad:self descriptionForHeaderInSection:i];
+            
+            if (self.delegate != nil)
+            {
+                detailOverlay.sectionLabel.text = [self.delegate tableHeaderScrollPad:self titleForHeaderInSection:i];
+                detailOverlay.descriptionLabel.text = [self.delegate tableHeaderScrollPad:self descriptionForHeaderInSection:i];
+            }
             
             [UIView animateWithDuration:0.5 animations:^{
             
                 CGPoint point = [self.superview convertPoint:tab.frame.origin fromView:nil];
-                NSLog(@"100   -    %f", point.y);
-                detailOverlay.transform = CGAffineTransformMakeTranslation(0.0, (point.y - ((detailOverlay.frame.size.height/2) - 10.0)));
+                float dPosY = point.y - (detailOverlay.frame.size.height/2);
+
+                detailOverlay.transform = CGAffineTransformMakeTranslation(0.0, dPosY);
+                
             }];
             
             [UIView animateWithDuration:0.5 animations:^{
@@ -210,6 +217,9 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
+    if (self.delegate == nil)
+        return;
+    
     // Drawing code
     
     int numOfSections = [self.delegate numberOfSectionsInTableHeaderScrollPad:self];
@@ -267,8 +277,7 @@
             detailOverlay.descriptionLabel.text = @"This is the description to test out this label with";
         }
     }
-    
-    NSLog(@"Section %d", [self.delegate numberOfSectionsInTableHeaderScrollPad:self]);
+
 }
 
 
