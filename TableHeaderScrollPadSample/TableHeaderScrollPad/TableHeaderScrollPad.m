@@ -163,8 +163,10 @@
             detailOverlay.descriptionLabel.text = [self.delegate tableHeaderScrollPad:self descriptionForHeaderInSection:i];
             
             [UIView animateWithDuration:0.5 animations:^{
-                NSLog(@"100   -    %f", tab.frame.origin.y);
-                detailOverlay.transform = CGAffineTransformMakeTranslation(0.0, tab.frame.origin.y);
+            
+                CGPoint point = [self.superview convertPoint:tab.frame.origin fromView:nil];
+                NSLog(@"100   -    %f", point.y);
+                detailOverlay.transform = CGAffineTransformMakeTranslation(0.0, (point.y - ((detailOverlay.frame.size.height/2) - 10.0)));
             }];
             
             [UIView animateWithDuration:0.5 animations:^{
