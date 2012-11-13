@@ -1,7 +1,7 @@
 TableHeaderScrollPad
 ============
 
-![Screenshot: Launch image](https://github.com/wfairclough/TableHeaderScrollPad/tree/master/screenshot.png)
+![Screenshot: Launch image](https://raw.github.com/wfairclough/TableHeaderScrollPad/master/screenshot.png)
 
 About
 -----
