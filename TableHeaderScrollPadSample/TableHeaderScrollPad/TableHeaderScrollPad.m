@@ -7,7 +7,9 @@
 //
 
 #import "TableHeaderScrollPad.h"
+#import "DetailOverlay.h"
 #import <QuartzCore/QuartzCore.h>
+
 
 #define kBackgroundColorDark 46.0
 #define kHeaderTabColorDark 87.0
@@ -19,15 +21,17 @@
 {
     TableHeaderScrollPadStyle scrollPadStyle;
     float sectionHeight;
+    BOOL touchBegan;
+    int selectedSectionIndex;
 }
 
 @property (nonatomic, strong) NSMutableArray *tabViews;
-
+@property (nonatomic, strong) DetailOverlay *detailOverlay;
 
 @end
 
 @implementation TableHeaderScrollPad
-@synthesize delegate, tabViews;
+@synthesize delegate, tabViews, detailOverlay;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -79,6 +83,12 @@
 {
     NSLog(@"Touch Began");
     
+    touchBegan = YES;
+
+    [UIView animateWithDuration:0.3 animations:^{
+        detailOverlay.alpha = 1.0;
+    }];
+    
     [self updateTabsScaleWithTouch:[touches anyObject]];
 }
 
@@ -92,6 +102,17 @@
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     NSLog(@"Touch Ended");
+
+    touchBegan = NO;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
+        if (touchBegan == NO)
+        {
+            [UIView animateWithDuration:1.0 animations:^{
+                detailOverlay.alpha = 0.0;
+            }];
+        }
+    });
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
@@ -105,12 +126,12 @@
     float posX = [touch locationInView:self].x;
     float posY = [touch locationInView:self].y;
     
-    if (posX < 0)
-        return;
+//    if (posX < 0)
+//        return;
     
     int skipIndex = -1;
     
-    for (__block int i = 0; i < [self.tabViews count]; i++)
+    for (int i = 0; i < [self.tabViews count]; i++)
     {
         UIView *tab = [self.tabViews objectAtIndex:i];
         UIView *prevTab = nil;
@@ -137,9 +158,18 @@
         
         if ((posY > minRange) && (posY < maxRange))
         {
+            selectedSectionIndex = i;
+            detailOverlay.sectionLabel.text = [self.delegate tableHeaderScrollPad:self titleForHeaderInSection:i];
+            detailOverlay.descriptionLabel.text = [self.delegate tableHeaderScrollPad:self descriptionForHeaderInSection:i];
+            
+            [UIView animateWithDuration:0.5 animations:^{
+                NSLog(@"100   -    %f", tab.frame.origin.y);
+                detailOverlay.transform = CGAffineTransformMakeTranslation(0.0, tab.frame.origin.y);
+            }];
+            
             [UIView animateWithDuration:0.5 animations:^{
                 tab.transform = CGAffineTransformMakeScale(1.8, 3.0);
-                
+
                 if (prevTab != nil)
                 {
                     prevTab.transform = CGAffineTransformMakeScale(1.5, 2.0);
@@ -224,6 +254,16 @@
         [self.tabViews addObject:sectionView];
         
         [self addSubview:sectionView];
+        
+        if (detailOverlay == nil) {
+            detailOverlay = [[DetailOverlay alloc] initWithScrollPad:self];
+            [detailOverlay setBackgroundColor:[UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:0.7]];
+            detailOverlay.alpha = 0.0;
+            [self.superview addSubview:detailOverlay];
+            
+            detailOverlay.sectionLabel.text = @"Section 1";
+            detailOverlay.descriptionLabel.text = @"This is the description to test out this label with";
+        }
     }
     
     NSLog(@"Section %d", [self.delegate numberOfSectionsInTableHeaderScrollPad:self]);
