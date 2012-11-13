@@ -58,7 +58,7 @@
 
 - (NSInteger) numberOfSectionsInTableHeaderScrollPad:(TableHeaderScrollPad *)scrollPad
 {
-    return 5;
+    return 45;
 }
 
 
