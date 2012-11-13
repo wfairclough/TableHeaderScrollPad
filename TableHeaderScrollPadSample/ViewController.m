@@ -51,10 +51,15 @@
     return [NSString stringWithFormat:@"Section Description for %d", section];    
 }
 
-- (BOOL) shouldDisplayInfoOverlayForTableHeaderScrollPad:(TableHeaderScrollPad *)scrollPad
-{
-    return YES;
-}
+/*
+ Will display the Detailed Overlay about each section if returned YES
+ 
+ Default will return YES.
+ */
+//- (BOOL) shouldDisplayInfoOverlayForTableHeaderScrollPad:(TableHeaderScrollPad *)scrollPad
+//{
+//    return YES;
+//}
 
 - (NSInteger) numberOfSectionsInTableHeaderScrollPad:(TableHeaderScrollPad *)scrollPad
 {

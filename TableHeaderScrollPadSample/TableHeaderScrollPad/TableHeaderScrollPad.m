@@ -55,6 +55,7 @@
         {
             [self setBackgroundColor:[UIColor colorWithRed:(kBackgroundColorDark/255.0f) green:(kBackgroundColorDark/255.0f) blue:(kBackgroundColorDark/255.0f) alpha:1.0]];
         }
+
     }
     return self;
 }
@@ -271,7 +272,23 @@
             detailOverlay = [[DetailOverlay alloc] initWithScrollPad:self];
             [detailOverlay setBackgroundColor:[UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:0.7]];
             detailOverlay.alpha = 0.0;
-            [self.superview addSubview:detailOverlay];
+            
+            if (self.delegate != nil)
+            {
+                if ([self.delegate respondsToSelector:@selector(shouldDisplayInfoOverlayForTableHeaderScrollPad:)])
+                {
+                    if ([self.delegate shouldDisplayInfoOverlayForTableHeaderScrollPad:self])
+                        [self.superview addSubview:detailOverlay];
+                }
+                else
+                {
+                    [self.superview addSubview:detailOverlay];
+                }
+            }
+            else
+            {
+                [self.superview addSubview:detailOverlay];
+            }
             
             detailOverlay.sectionLabel.text = @"Section 1";
             detailOverlay.descriptionLabel.text = @"This is the description to test out this label with";
