@@ -31,7 +31,7 @@
 @end
 
 @implementation TableHeaderScrollPad
-@synthesize delegate, tabViews, detailOverlay;
+@synthesize delegate, tabViews, detailOverlay, tableView;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -95,6 +95,11 @@
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self updateTabsScaleWithTouch:[touches anyObject]];
+    
+    if (self.tableView != nil)
+    {
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:NSNotFound inSection:selectedSectionIndex] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    }
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -114,6 +119,11 @@
     if (self.delegate != nil)
     {
         [self.delegate didSelectTabOnScrollPad:self atSection:selectedSectionIndex];
+    }
+    
+    if (self.tableView != nil)
+    {
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:NSNotFound inSection:selectedSectionIndex] atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
 }
 

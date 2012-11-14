@@ -38,6 +38,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    self.scrollPad.tableView = self.tableView;
 }
 
 
@@ -75,8 +77,6 @@
 
 - (void) didSelectTabOnScrollPad:(TableHeaderScrollPad *)scrollPad atSection:(NSInteger)section
 {
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:NSNotFound inSection:section] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-    
     NSLog(@"Did select tab at index %d", section);
 }
 

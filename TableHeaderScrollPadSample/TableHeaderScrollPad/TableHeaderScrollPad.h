@@ -57,7 +57,7 @@ typedef enum {
 @interface TableHeaderScrollPad : UIView <TableHeaderScrollPadTouchesDelegate>
 
 @property (nonatomic, assign) id <TableHeaderScrollPadDelegate> delegate;
-
+@property (nonatomic, strong) UITableView *tableView;
 
 - (id) initWithStyle:(TableHeaderScrollPadStyle)style frame:(CGRect)frame;
 
