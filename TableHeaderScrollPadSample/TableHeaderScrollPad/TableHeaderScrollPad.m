@@ -17,6 +17,8 @@
 #define kBackgroundColorLight 235.0
 #define kHeaderTabColorLight 46.0
 
+dispatch_queue_t animationQueue;
+
 @interface TableHeaderScrollPad ()
 {
     TableHeaderScrollPadStyle scrollPadStyle;
@@ -46,6 +48,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        animationQueue = dispatch_queue_create("com.wfairclough.TableHeaderScrollPad", NULL);
+        
         scrollPadStyle = style;
         if (style == kTableHeaderScrollPadStyleLight)
         {
@@ -106,7 +110,7 @@
 {
     touchBegan = NO;
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), animationQueue, ^{
         if (touchBegan == NO)
         {
             [UIView animateWithDuration:1.0 animations:^{
@@ -135,7 +139,7 @@
 - (void) updateTabsScaleWithTouch:(UITouch *)touch
 {
 
-    float posX = [touch locationInView:self].x;
+//    float posX = [touch locationInView:self].x;
     float posY = [touch locationInView:self].y;
     
 //    if (posX < 0)
@@ -183,6 +187,12 @@
                 CGPoint point = [self.superview convertPoint:tab.frame.origin fromView:nil];
                 float dPosY = point.y - (detailOverlay.frame.size.height/2);
 
+                if (dPosY < (self.frame.origin.y + 5.0))
+                    dPosY = self.frame.origin.y + 5.0;
+                
+                if (dPosY > ((self.frame.origin.y + self.frame.size.height) - (self.detailOverlay.frame.size.height - 5.0)))
+                    dPosY = ((self.frame.origin.y + self.frame.size.height) - (self.detailOverlay.frame.size.height - 5.0));
+                
                 detailOverlay.transform = CGAffineTransformMakeTranslation(0.0, dPosY);
                 
             }];
