@@ -21,6 +21,7 @@
 		BE9DD06E1651A4E90061F1AF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9DD06C1651A4E90061F1AF /* ViewController.m */; };
 		BE9DD06F1651A4E90061F1AF /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE9DD06D1651A4E90061F1AF /* ViewController.xib */; };
 		BE9DD072165284CB0061F1AF /* DetailOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9DD071165284CB0061F1AF /* DetailOverlay.m */; };
+		BEA6DA4A1652D56B003C2B5E /* StateCities.plist in Resources */ = {isa = PBXBuildFile; fileRef = BEA6DA491652D56B003C2B5E /* StateCities.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		BE9DD06D1651A4E90061F1AF /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 		BE9DD070165284CB0061F1AF /* DetailOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailOverlay.h; path = TableHeaderScrollPad/DetailOverlay.h; sourceTree = "<group>"; };
 		BE9DD071165284CB0061F1AF /* DetailOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailOverlay.m; path = TableHeaderScrollPad/DetailOverlay.m; sourceTree = "<group>"; };
+		BEA6DA491652D56B003C2B5E /* StateCities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = StateCities.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				BE9DD056165183EC0061F1AF /* TableHeaderScrollPadSample-Prefix.pch */,
 				BE9DD05A165183EC0061F1AF /* Default.png */,
 				BE9DD05C165183EC0061F1AF /* Default@2x.png */,
+				BEA6DA491652D56B003C2B5E /* StateCities.plist */,
 				BE9DD05E165183EC0061F1AF /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
@@ -185,6 +188,7 @@
 				BE9DD05D165183EC0061F1AF /* Default@2x.png in Resources */,
 				BE9DD05F165183EC0061F1AF /* Default-568h@2x.png in Resources */,
 				BE9DD06F1651A4E90061F1AF /* ViewController.xib in Resources */,
+				BEA6DA4A1652D56B003C2B5E /* StateCities.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +310,7 @@
 				BE9DD064165183EC0061F1AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

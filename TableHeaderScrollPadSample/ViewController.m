@@ -14,7 +14,8 @@
 
 @implementation ViewController
 @synthesize scrollPad = _scrollPad;
-
+@synthesize states;
+@synthesize tableView;
 
 #pragma mark - Initializing
 
@@ -22,6 +23,9 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        NSString *dataPath = [[NSBundle mainBundle] pathForResource:@"StateCities" ofType:@"plist"];
+        states = [[NSDictionary dictionaryWithContentsOfFile:dataPath] retain];
+        
         self.scrollPad = [[TableHeaderScrollPad alloc] initWithStyle:kTableHeaderScrollPadStyleDark frame:CGRectMake(260.0, 0.0, 60.0, 568.0)];
         self.scrollPad.delegate = self;
         
@@ -43,7 +47,10 @@
 
 - (NSString *) tableHeaderScrollPad:(TableHeaderScrollPad *)scrollPad titleForHeaderInSection:(NSInteger)section
 {
-    return [NSString stringWithFormat:@"Section %d", section];
+    NSString *stateKey = [[states allKeys] objectAtIndex:section];
+//    NSArray *cities = [states objectForKey:stateKey];
+
+    return stateKey;
 }
 
 - (NSString *) tableHeaderScrollPad:(TableHeaderScrollPad *)scrollPad descriptionForHeaderInSection:(NSInteger)section
@@ -63,18 +70,65 @@
 
 - (NSInteger) numberOfSectionsInTableHeaderScrollPad:(TableHeaderScrollPad *)scrollPad
 {
-    return 45;
+    return [[states allKeys] count];
 }
 
 - (void) didSelectTabOnScrollPad:(TableHeaderScrollPad *)scrollPad atSection:(NSInteger)section
 {
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:NSNotFound inSection:section] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    
     NSLog(@"Did select tab at index %d", section);
 }
 
 
 
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSString *stateKey = [[states allKeys] objectAtIndex:section];
+    NSArray *cities = [states objectForKey:stateKey];
+    return [cities count];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return [[states allKeys] count];
+}
 
 
+- (NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *stateKey = [[states allKeys] objectAtIndex:section];
+    
+    return stateKey;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
+    
+    NSString *stateKey = [[states allKeys] objectAtIndex:indexPath.section];
+    NSArray *cities = [states objectForKey:stateKey];
+    NSString *city = [cities objectAtIndex:indexPath.row];
+    
+    cell.textLabel.text = city;
+    
+    return cell;
+}
+
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
 
 
 #pragma mark - Closing
