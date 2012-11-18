@@ -22,6 +22,7 @@
 		BE9DD06F1651A4E90061F1AF /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE9DD06D1651A4E90061F1AF /* ViewController.xib */; };
 		BE9DD072165284CB0061F1AF /* DetailOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9DD071165284CB0061F1AF /* DetailOverlay.m */; };
 		BEA6DA4A1652D56B003C2B5E /* StateCities.plist in Resources */ = {isa = PBXBuildFile; fileRef = BEA6DA491652D56B003C2B5E /* StateCities.plist */; };
+		BEEF698F16543A19003291DC /* ScrollPadTab.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEF698E16543A19003291DC /* ScrollPadTab.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,8 @@
 		BE9DD070165284CB0061F1AF /* DetailOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailOverlay.h; path = TableHeaderScrollPad/DetailOverlay.h; sourceTree = "<group>"; };
 		BE9DD071165284CB0061F1AF /* DetailOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailOverlay.m; path = TableHeaderScrollPad/DetailOverlay.m; sourceTree = "<group>"; };
 		BEA6DA491652D56B003C2B5E /* StateCities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = StateCities.plist; sourceTree = "<group>"; };
+		BEEF698D16543A19003291DC /* ScrollPadTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScrollPadTab.h; path = TableHeaderScrollPad/ScrollPadTab.h; sourceTree = "<group>"; };
+		BEEF698E16543A19003291DC /* ScrollPadTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScrollPadTab.m; path = TableHeaderScrollPad/ScrollPadTab.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,8 @@
 				BE9DD0671651842D0061F1AF /* TableHeaderScrollPad.m */,
 				BE9DD070165284CB0061F1AF /* DetailOverlay.h */,
 				BE9DD071165284CB0061F1AF /* DetailOverlay.m */,
+				BEEF698D16543A19003291DC /* ScrollPadTab.h */,
+				BEEF698E16543A19003291DC /* ScrollPadTab.m */,
 			);
 			name = TableHeaderScrollPad;
 			sourceTree = "<group>";
@@ -204,6 +209,7 @@
 				BE9DD0681651842D0061F1AF /* TableHeaderScrollPad.m in Sources */,
 				BE9DD06E1651A4E90061F1AF /* ViewController.m in Sources */,
 				BE9DD072165284CB0061F1AF /* DetailOverlay.m in Sources */,
+				BEEF698F16543A19003291DC /* ScrollPadTab.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

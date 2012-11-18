@@ -8,6 +8,7 @@
 
 #import "TableHeaderScrollPad.h"
 #import "DetailOverlay.h"
+#import "ScrollPadTab.h"
 #import <QuartzCore/QuartzCore.h>
 
 
@@ -149,9 +150,9 @@ dispatch_queue_t animationQueue;
     
     for (int i = 0; i < [self.tabViews count]; i++)
     {
-        UIView *tab = [self.tabViews objectAtIndex:i];
-        UIView *prevTab = nil;
-        UIView *nextTab = nil;
+        ScrollPadTab *tab = [self.tabViews objectAtIndex:i];
+        ScrollPadTab *prevTab = nil;
+        ScrollPadTab *nextTab = nil;
         
         if (skipIndex == i)
             return;
@@ -270,23 +271,20 @@ dispatch_queue_t animationQueue;
 //            tabLeftOffset = 10.0;
 //        }
         
-        UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(tabLeftOffset, (i * heightPreSection) + (heightPreSection/2.0), scrollPadWidth - tabLeftOffset*2.0, tabHeight)];
+        ScrollPadTab *sectionTab = [[ScrollPadTab alloc] initWithFrame:CGRectMake(tabLeftOffset, (i * heightPreSection) + (heightPreSection/2.0), scrollPadWidth - tabLeftOffset*2.0, tabHeight)];
         
         if (scrollPadStyle == kTableHeaderScrollPadStyleLight)
         {
-            [sectionView setBackgroundColor:[UIColor colorWithRed:(kHeaderTabColorLight/255.0f) green:(kHeaderTabColorLight/255.0f) blue:(kHeaderTabColorLight/255.0f) alpha:1.0]];
+            [sectionTab setBackgroundColor:[UIColor colorWithRed:(kHeaderTabColorLight/255.0f) green:(kHeaderTabColorLight/255.0f) blue:(kHeaderTabColorLight/255.0f) alpha:1.0]];
         }
         else
         {
-            [sectionView setBackgroundColor:[UIColor colorWithRed:(kHeaderTabColorDark/255.0f) green:(kHeaderTabColorDark/255.0f) blue:(kHeaderTabColorDark/255.0f) alpha:1.0]];
+            [sectionTab setBackgroundColor:[UIColor colorWithRed:(kHeaderTabColorDark/255.0f) green:(kHeaderTabColorDark/255.0f) blue:(kHeaderTabColorDark/255.0f) alpha:1.0]];
         }
         
-        sectionView.layer.cornerRadius = 1.5;
-        sectionView.layer.masksToBounds = YES;
+        [self.tabViews addObject:sectionTab];
         
-        [self.tabViews addObject:sectionView];
-        
-        [self addSubview:sectionView];
+        [self addSubview:sectionTab];
         
         if (detailOverlay == nil) {
             detailOverlay = [[DetailOverlay alloc] initWithScrollPad:self];
